@@ -19,7 +19,7 @@ namespace Consola
             {
                 ReadUrl(i);
             }
-
+            Console.WriteLine("Finished!");
             Console.ReadLine();
         }
 
