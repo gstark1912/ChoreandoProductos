@@ -28,10 +28,9 @@ namespace Consola
             int? entity;
             using (var db = new ProductosEntities())
             {
-                entity = db.ProductoAsia.Min(p => p.IDProductoAsia);
-                if (entity == null) entity = 4749; else entity--;
+                if (db.ProductoAsia.Count() == 0) entity = 4750; else entity = db.ProductoAsia.Min(p => p.IDProductoAsia);
             }
-            return entity.Value;
+            return entity.Value - 1;
         }
 
         private static void ReadUrl(int num)
