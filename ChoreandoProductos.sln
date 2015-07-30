@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consola", "Consola\Consola.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolaJumbo", "ConsolaJumbo\ConsolaJumbo.csproj", "{B29477FA-430B-4141-B915-8459E636014D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolaWaltMart", "ConsolaWaltMart\ConsolaWaltMart.csproj", "{7BA73231-ED4B-44C0-81B9-4248CA599D57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B29477FA-430B-4141-B915-8459E636014D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B29477FA-430B-4141-B915-8459E636014D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B29477FA-430B-4141-B915-8459E636014D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA73231-ED4B-44C0-81B9-4248CA599D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA73231-ED4B-44C0-81B9-4248CA599D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA73231-ED4B-44C0-81B9-4248CA599D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA73231-ED4B-44C0-81B9-4248CA599D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
