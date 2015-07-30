@@ -13,11 +13,18 @@ namespace Consola
     {
         static void Main(string[] args)
         {
-            int num = GetMinimumId();
+            int num = 4749;//GetMinimumId();
 
             for (int i = num; i > 0; i--)
             {
-                ReadUrl(i);
+                try
+                {
+                    ReadUrl(i);
+                }
+                catch (Exception ex)
+                {
+                    SaveToDB(new ProductoAsia { IDProductoAsia = i, Descripcion = "UNKNOWN", Codigo = "UNK", Precio = "0" });
+                }
             }
             Console.WriteLine("Finished!");
             Console.ReadLine();
@@ -49,35 +56,32 @@ namespace Consola
 
         private static void ShowResults(string result, int num)
         {
-            try
+
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(result);
+            HtmlNode docNode = doc.DocumentNode;
+            HtmlNode name = docNode.SelectNodes("//div[@class ='goods_name']").First();
+            Console.WriteLine(name.InnerText);
+            HtmlNode sn = docNode.SelectNodes("//div[@class ='sn']").First();
+            Console.WriteLine(sn.InnerText);
+            HtmlNode price = docNode.SelectNodes("//font[@id ='ECS_SHOPPRICE']").First();
+            Console.WriteLine(price.InnerText);
+            /*
+            SaveToDB(new ProductoAsia
             {
-                HtmlDocument doc = new HtmlDocument();
-                doc.LoadHtml(result);
-                HtmlNode docNode = doc.DocumentNode;
-                HtmlNode name = docNode.SelectNodes("//div[@class ='goods_name']").First();
-                Console.WriteLine(name.InnerText);
-                HtmlNode sn = docNode.SelectNodes("//div[@class ='sn']").First();
-                Console.WriteLine(sn.InnerText);
-                HtmlNode price = docNode.SelectNodes("//font[@id ='ECS_SHOPPRICE']").First();
-                Console.WriteLine(price.InnerText);
-                SaveToDB(new ProductoAsia
-                {
-                    IDProductoAsia = num,
-                    Descripcion = name.InnerText.Trim().ToUpper(),
-                    Codigo = sn.InnerText.Replace("Codigo：		", "").Trim(),
-                    Precio = price.InnerText
-                });
-                /*
-                HtmlNode img = docNode.SelectNodes("//div[@class ='imgInfo']").First();
-                img = img.SelectNodes("//a[@class ='jqzoom']").First();
-                string url = "http://www.supermercadoasia.com/" + img.Attributes["href"].Value;
-                SaveImageToDrive(url, num.ToString());
-                 */
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("*********ERROR***************");
-            }
+                IDProductoAsia = num,
+                Descripcion = name.InnerText.Trim().ToUpper(),
+                Codigo = sn.InnerText.Replace("Codigo：		", "").Trim(),
+                Precio = price.InnerText
+            });
+            */
+            
+            HtmlNode img = docNode.SelectNodes("//div[@class ='imgInfo']").First();
+            img = img.SelectNodes("//a[@class ='jqzoom']").First();
+            string url = "http://www.supermercadoasia.com/" + img.Attributes["href"].Value;
+            SaveImageToDrive(url, num.ToString());
+            
+
         }
 
         private static void SaveToDB(ProductoAsia productoAsia)
